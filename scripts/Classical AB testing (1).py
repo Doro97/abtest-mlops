@@ -11,7 +11,7 @@ import numpy as np
 # In[101]:
 
 
-df=pd.read_csv('AdSmartABdata.csv')
+df=pd.read_csv('C:\Users\user.DESKTOP-OMQ89VA\Desktop\Projects\abtest-mlops\data\AdSmartABdata.csv', sep=',')
 df.head()
 
 
@@ -303,28 +303,106 @@ z_stat,pval
 
 
 
-# In[ ]:
+# # ML modelling with MLOps
+# 
+
+# Split data by browser and platform_os, and version each split as a new version of the data in dvc.
+# 
+
+# In[159]:
+
+
+df
+
+
+# In[162]:
+
+
+#selecting only the users who responded
+new_df=df.loc[df['response']!=0]
+new_df.shape
+
+
+# In[163]:
+
+
+unique_values=pd.DataFrame(new_df.apply(lambda x: len(x.value_counts(dropna=False)), axis=0), 
+                           columns=['Unique Value Count']).sort_values(by='Unique Value Count', ascending=True)
+unique_values
+
+
+# In[177]:
+
+
+#converting the new dataframe to a csv file
+new_df.to_csv('responded_users.csv')
+
+
+# ## Splitting by platform_os
+
+# In[172]:
 
 
 
+new_df['platform_os'].value_counts()
 
 
-# In[ ]:
+# In[176]:
 
 
+#selecting only the users who use platform_os labeled 6
+platform_os6=new_df.loc[new_df['platform_os']==6]
+platform_os6.to_csv('platform_os6.csv')
+platform_os6.head()
 
 
-
-# In[ ]:
-
+# In[174]:
 
 
+#selecting only the users who use platform_os labeled 5
+platform_os5=new_df.loc[new_df['platform_os']==5]
+platform_os5.to_csv('platform_os5.csv')
+platform_os5
 
 
-# In[ ]:
+# ## Splitting by browsers
+
+# In[178]:
 
 
+new_df['browser'].value_counts()
 
+
+# In[180]:
+
+
+ChromeMobile=new_df.loc[new_df['browser']=='Chrome Mobile']
+ChromeMobile.to_csv('Chrome Mobile.csv')
+ChromeMobile
+
+
+# In[181]:
+
+
+ChromeMobileWebView=new_df.loc[new_df['browser']=='Chrome Mobile WebView']
+ChromeMobileWebView.to_csv('Chrome_Mobile_WebView.csv')
+ChromeMobileWebView
+
+
+# In[182]:
+
+
+Facebook=new_df.loc[new_df['browser']=='Facebook']
+Facebook.to_csv('Facebook.csv')
+Facebook
+
+
+# In[183]:
+
+
+Samsung_Internet=new_df.loc[new_df['browser']=='Samsung Internet']
+Samsung_Internet.to_csv('Samsung_Internet.csv')
+Samsung_Internet
 
 
 # In[ ]:
