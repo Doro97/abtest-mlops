@@ -10,7 +10,9 @@ SmartAd is a mobile first advertiser agency. It designs intuitive touch-enabled 
 
 ## Data
 
-The BIO data for this project is a “Yes” and “No” response of online users to the following question Q: Do you know the brand Lux? O Yes O No
+The BIO data for this project is a “Yes” and “No” response of online users to the following question Q: Do you know the brand Lux? 
+  O Yes 
+  O No
 
 This is a test run and the main objective is to validate the hypothesis algorithm you built. SmartAd ran this campaign from 3-10 July 2020. The users that were presented with the questionnaire above were chosen according to the following rule: Control: users who have been shown a dummy ad Exposed: users who have been shown a creative (ad) that was designed by SmartAd for the client.
 
@@ -27,3 +29,11 @@ device_make: the name of the type of device the user has e.g. Samsung
 platform_os: the id of the OS the user has.
 
 browser: the name of the browser the user uses to see the BIO questionnaire.
+
+## Analysis
+The project used the following methods to carry out the AB testing:
+
+ 1. Classic A/B testing analysis
+ 2. A/B testing with Machine Learning
+
+Conducted data versioning using dvc while carrying out A/B testing with Machine Learning
